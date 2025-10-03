@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Styled Contact Form</title>
+  <style>
+   
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to bottom, #001f4d, #66a3ff);
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    form {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      width: 350px;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #001f4d;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #003366;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px 8px;
+      margin-top: 5px;
+      border: 1.5px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #003366;
+      outline: none;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      background-color: #003366;
+      color: white;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 7px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #001f4d;
+    }
+
+    .error {
+      color: #cc0000;
+      margin-top: 12px;
+      font-weight: 600;
+    }
+
+    .success {
+      color: #006600;
+      margin-top: 12px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+
+  <form id="contactForm" onsubmit="return validateForm()">
+    <h2>Contact Us</h2>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="Your full name" />
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="example@mail.com" />
+
+    <label for="message">Message:</label>
+    <textarea id="message" name="message" rows="5" placeholder="Write your message here"></textarea>
+
+    
+    <button type="submit">Submit</button>
+
+    <p id="formMessage"></p>
+  </form>
+
+  <script>
+    function validateForm() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const formMessage = document.getElementById('formMessage');
+
+      const nameRegex = /^[A-Za-z\s]{2,}$/;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!name) {
+        formMessage.textContent = "❌ Please enter your name.";
+        formMessage.className = "error";
+        return false;
+      }
+      if (!nameRegex.test(name)) {
+        formMessage.textContent = "❌ Name must be at least 2 letters and contain letters only.";
+        formMessage.className = "error";
+        return false;
+      }
+      if (!email) {
+        formMessage.textContent = "❌ Please enter your email.";
+        formMessage.className = "error";
+        return false;
+      }
+      if (!emailRegex.test(email)) {
+        formMessage.textContent = "❌ Please enter a valid email address.";
+        formMessage.className = "error";
+        return false;
+      }
+      if (!message) {
+        formMessage.textContent = "❌ Please enter your message.";
+        formMessage.className = "error";
+        return false;
+      }
+      if (message.length < 10) {
+        formMessage.textContent = "❌ Message should be at least 10 characters.";
+        formMessage.className = "error";
+        return false;
+      }
+
+      
+      window.location.href = "Form/hafs.html";
+      return false; 
+    }
+  </script>
+
+</body>
+
+</html>
